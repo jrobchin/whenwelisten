@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.shortcuts import redirect
 
 urlpatterns = [
-    url(r'^$', lambda r: redirect('/watch')),
     url(r'^watch/', include('watch.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^$', lambda r: redirect('/watch')),
 ]

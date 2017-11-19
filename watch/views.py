@@ -5,13 +5,31 @@ from django.views.decorators.csrf import csrf_exempt
 from .diagnose import diagnose_twitter
 
 def home(request):
-    return render(request, "watch/home.html", {'name': 'jason'})
+    username = request.GET.get('username')
+    if username == None:
+        username = "twitterhandle"
+    return render(request, "watch/index.html", {"input_placeholder": username})
 
-@csrf_exempt
 def help(request):
     if request.method == 'POST':
         # Run diagnostic
-
-        return HttpResponse(request.POST['handle'])
+        handle = request.POST['handle'].strip("@")
+        print("STARTING DIAGNOSIS FOR:", handle)
+        diagnosis, worst_tweet = diagnose_twitter.diagnose_twitter(handle)
+        if diagnosis < 0:
+            print("NO RESULTS FOR:", handle)
+            return HttpResponse("<h1>NO RESULTS FOR USER!!!!</h1>")
+        print("FINISHED DIAGNOSIS FOR:", handle)
+        return render(request, "watch/help.html", {'username': handle, 'score': int(diagnosis*100), 'worst_tweet': worst_tweet, 'message': diagnose_twitter.generate_message(int(diagnosis*100))})
     else:
-        return HttpResponse("Sorry, must be a POST.")
+        return HttpResponse("<h1>Failed!</h1>")
+
+@csrf_exempt
+def send_dm(request):
+    print(request.method)
+    if request.method == 'POST':
+        username = request.GET['username']
+        diagnose_twitter.send_response_dm(username)
+        return HttpResponse("It worked!") 
+    else:
+        return HttpResponse("It failed!")

@@ -49,10 +49,14 @@ def measure_sentiment_batch(documents):
 
 
 def measure_emotion_batch(documents):
+    max_sad = 0
+    sad_id = ""
     for doc in documents:
-        print(doc['text'])
         try:
             doc['emotions'] = indicoio.emotion(doc['text'])
+            if max_sad < doc['emotions']['sadness']:
+                max_sad = doc['emotions']['sadness']
+                sad_id = doc['id']
         except IndicoError:
             doc['emotions'] = {
                 'anger': 0., 
@@ -62,7 +66,7 @@ def measure_emotion_batch(documents):
                 'surprise': 0.
             }
 
-    return documents
+    return documents, sad_id
 
 
 def format_tweets_to_documents(tweets):
@@ -111,7 +115,6 @@ def score_model(results):
     output = {}
     for tid, res in results.items():
         score = res['score']
-        print("Score is " + str(score))
         if score < 0.5:
             output[tid] = res['score']
             # emotion = (res['emotions']['fear']*res['emotions']['sadness'])/2
@@ -122,7 +125,6 @@ def score_model(results):
             #     output[tid] = 0
         elif score > 0.5:
             emotion = res['emotions']['joy']
-            print("Emotions is " + str(emotion))
             if emotion > EMOTION_THRESH:
                 output[tid] = res['score'] * (1 + emotion)
                 if output[tid] > 1:
@@ -134,20 +136,26 @@ def score_model(results):
 
     return output
 
-
-if __name__ == '__main__':
+def diagnose_twitter(username):
     # Get user's tweets and measure sentiments
-    test_users = [
-        "djkhaled",
-        "iDepressing",
-        "HarshBuddy98",
-        "xxxtentacion",
-        "Freddy_E"
-    ]
-    user_tweets = tweets_from_user(test_users[3])
+    # test_users = [
+    #     "djkhaled",
+    #     "iDepressing",
+    #     "HarshBuddy98",
+    #     "xxxtentacion",
+    #     "Freddy_E",
+    #     "fmahbouba",
+    #     "asahdkhaled"
+    # ]
+    # user_tweets = tweets_from_user(test_users[-1])
+
+    user_tweets = tweets_from_user(username)
+    if len(user_tweets) < 1:
+        return -1
+
     documents = format_tweets_to_documents(user_tweets)
     sentiments = measure_sentiment_batch(documents)
-    emotions = measure_emotion_batch(documents)
+    emotions, sad_id = measure_emotion_batch(documents)
 
     results = {}
     for sent in sentiments:
@@ -155,6 +163,7 @@ if __name__ == '__main__':
 
     for emo in emotions:
         results[emo['id']]['emotions'] = emo['emotions']
+        results[emo['id']]['text'] = emo['text']
 
     results_modified = score_model(results)
 
@@ -163,5 +172,27 @@ if __name__ == '__main__':
         scores.append(results_modified[tid])
         # print("{}: {}: {}".format(tid, res['score'], results_modified[tid]))
 
-    print("Average Score:{}".format(average_score(scores)))
+    # print("Average Score:{}".format(average_score(scores)))
+    return average_score(scores), results[sad_id]['text']
 
+def generate_message(score):
+    if score < 10:
+        return "We believe it is extremely crucial that you check up on this individual as they definitely need someone to be there for them."
+    elif score < 20:
+        return "There is a definite concern with this individual’s mental health and it would be advised you check up on them if possible."
+    elif score < 30:
+        return "The individual you have searched for needs to be checked up on as they seem to be battling some type of mental distress."
+    elif score < 40:
+        return "This individual may be going through a rough time and it would not hurt to check up on them."
+    elif score < 50:
+        return "While there is no definite reason to check up, just make sure you do say hi next time you see them to make sure they’re okay."
+    elif score < 60:
+        return "While this is an average result, it never hurts to check up on them."
+    elif score < 70:
+        return "Do not worry, they’re doing perfectly fine."
+    elif score < 80:
+        return "While they aren’t perfect, they’re still enjoying life."
+    elif score < 90:
+        return "These people are loving life, there’s no reason to worry about their mental state."
+    else:
+        return "Error, invalid score"

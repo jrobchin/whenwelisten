@@ -19,6 +19,7 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^', views.home, name='home'),
+    url(r'^$', views.home, name='home'),
     url(r'^help', views.help, name='help'),
+    url(r'^send-dm', views.send_dm, name='send_dm'),
 ]
