@@ -7,7 +7,6 @@ Flask==0.12.2
 futures==3.1.1
 idna==2.6
 imgkit==0.1.8
-IndicoIo==1.1.1
 itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
@@ -30,3 +29,5 @@ urllib3==1.22
 Werkzeug==0.12.2
 whitenoise==3.3.1
 gunicorn
+IndicoIo==1.1.1
+

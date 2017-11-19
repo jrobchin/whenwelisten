@@ -14,12 +14,12 @@ def help(request):
     if request.method == 'POST':
         # Run diagnostic
         handle = request.POST['handle'].strip("@")
-        print("STARTING DIAGNOSIS FOR:", handle)
-        diagnosis, worst_tweet = diagnose_twitter.diagnose_twitter(handle)
+        try:
+            diagnosis, worst_tweet = diagnose_twitter.diagnose_twitter(handle)
+        except TypeError:
+            return render(request, "watch/index.html", {"input_placeholder": "@" + handle + " " + "not found"})
         if diagnosis < 0:
-            print("NO RESULTS FOR:", handle)
             return HttpResponse("<h1>NO RESULTS FOR USER!!!!</h1>")
-        print("FINISHED DIAGNOSIS FOR:", handle)
         return render(request, "watch/help.html", {'username': handle, 'score': int(diagnosis*100), 'worst_tweet': worst_tweet, 'message': diagnose_twitter.generate_message(int(diagnosis*100))})
     else:
         return HttpResponse("<h1>Failed!</h1>")

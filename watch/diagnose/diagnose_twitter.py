@@ -5,7 +5,7 @@ import os
 import tweepy
 import indicoio
 from indicoio.utils.errors import IndicoError
-indicoio.config.api_key = '1c7243947462c66f46ef617aadee4197'
+indicoio.config.api_key = '83a12f4a1870089de3e02f0b4ec3aa47'
 
 # Twitter
 CONSUMER_KEY = "NMCgbXWeDTBH81AWfLHcsrUFD"
@@ -43,7 +43,9 @@ def measure_sentiment_batch(documents):
 
     data = json.dumps({'documents': documents})
     response = requests.post(MICROSOFT_API, data=data, headers=headers)
-    response = json.loads(response.content)
+    
+    content = response.content.decode('utf-8').replace("'", '"')
+    response = json.loads(content)
     
     return response['documents']
 
@@ -93,8 +95,9 @@ def tweets_from_user(username, count=100, pages=1):
 
 
 def send_response_dm(username, message=None):
+    print("sending dm to:", username)
     if message == None:
-        message = "Someone cares about you. If you're feeling down, call 1-800-273-8255."
+        message = "Someone cares about you. If you're feeling down, call 1-800-273-8255. If you're okay, let someone else know you care by visiting bit.do/whenwl."
 
     api.send_direct_message(username, text=message)
 
@@ -192,7 +195,7 @@ def generate_message(score):
         return "Do not worry, they’re doing perfectly fine."
     elif score < 80:
         return "While they aren’t perfect, they’re still enjoying life."
-    elif score < 90:
+    elif score < 100:
         return "These people are loving life, there’s no reason to worry about their mental state."
     else:
         return "Error, invalid score"
