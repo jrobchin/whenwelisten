@@ -1,0 +1,104 @@
+{% load static %}
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static "SuicidePrevention.css" %}">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+
+	<title>1-800-273-8255</title>
+</head>
+<body style="background-color: #efefef">
+	<div class="topContainer">
+		<div>
+			<nav>
+				<h1 style="font-size: 80px; font-weight: 600">When We Listen.</h1>
+			</nav>
+		</div>
+
+		<div class="searchbar">
+			<p style="font-weight: 600">Who are you concerned about?</p>
+			<form action="/watch/help" method="post" onsubmit="this.disabled=true">{% csrf_token %}
+  				<input type="text" name="handle" placeholder="@{{ input_placeholder }}" size="179" autocomplete="off"><br>
+			</form>
+		</div>
+		<div>
+			<hr id="spacer" style="color: #efefef"></hr>
+		</div>
+	</div>
+
+	<div class="midContainer">
+		<div class="image">
+			<img width="200px" src="{% static "like.svg" %}">
+		</div> 
+
+		<div class="secondHeading">
+			<h2 style="font-weight: 600">We want to help.</h2>
+			<h2 style="font-weight: 600">Most want someone to listen.</h2>
+			<br>
+			<p style="font-size: 25px; font-weight: 600; color: #706e6e;">Mental Illness is something which can hijack the lives of any individual; family, friend or stranger. Sometimes we may be afraid to approach such individuals when we have a doubt about their mental state but through this app, you'll be given the confidence you need to understand how serious their mental state really is. That's what happens When We Listen.</p>
+		</div>
+	</div>
+
+
+	<div class="lowContainer" style="background-color: white">
+		<h1 id="titleBottom" style="font-weight: 600">Steps</h1>
+		<div id="x1" class="row">
+			<span id="num1" class="" style="background-color: #dc3545;
+    height: 29px;
+    vertical-align: middle;
+    border-radius: 50%;
+    width: 29px;
+    align-content: center;
+    align-items: center;
+    padding-left: 9px;
+    color: white;
+    margin-left: 189px;
+    font-weight: 600;
+    padding-right: 0;
+    ">1</span>
+			<p id="firstStep" style="margin-left: 20px; padding-right: 0;"> Search for the person you are concerned about.<sup>1</sup></p>
+		</div>
+
+		<div id="x2" class="row">
+			<span id="num2" class="" style="background-color: #dc3545;
+    height: 29px;
+    vertical-align: middle;
+    border-radius: 50%;
+    width: 29px;
+    align-content: center;
+    align-items: center;
+    padding-left: 9px;
+    color: white;
+    margin-left: 189px;
+    font-weight: 600;
+    padding-right: 0;">2</span>
+			<p id="secondStep" style="margin-left: 20px; padding-right: 0;"> View the emotional data associated with the selected twitter user. </p>
+		</div>
+		
+		<div id="x3" class="row">
+			<span id="num3" class="" style="background-color: #dc3545;
+    height: 29px;
+    vertical-align: middle;
+    border-radius: 50%;
+    width: 29px;
+    align-content: center;
+    align-items: center;
+    padding-left: 9px;
+    color: white;
+    margin-left: 189px;
+    font-weight: 600;
+    padding-right: 0;">3</span>
+			<p id="thirdStep" style="margin-left: 20px; padding-right: 0;"> If you are concerned please contact 1-800-273-8255. </p>
+		</div>
+
+		<div id="x4">
+			<p>1. The Twitter user must be public in order for our service to detect their tweets.</p>
+			<p>When We Listen.</p>
+		</div>
+	</div>	
+
+	<script type="text/javascript" src="{% static "SuicidePrevention.js" %}></script>
+</body>
+</html>

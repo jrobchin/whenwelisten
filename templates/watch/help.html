@@ -1,0 +1,83 @@
+{% load static %}
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static "SuicidePrevention2.css" %}">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static "circle.css" %}">
+
+	<title>1-800-273-8255</title>
+</head>
+<body style="background-color: #e06767">
+	<div class="container">
+		
+	<div class="topContainer">
+		<div>
+			<nav>
+				<h1 style="font-size: 80px; font-weight: 600">When We Listen.</h1>
+				<button id="closeButton" href="/watch" onclick="window.location='/watch';">Back</button>
+			</nav>
+		</div>
+		<div class="searchbar">
+			<p style="font-weight: 600">Who are you concerned about?</p>
+			<form>
+  				<input style="font-weight: 600" type="text" name="user" placeholder="{{ username }}" size="179" autocomplete="off" readonly=""><br>
+			</form>
+		</div>
+		<div>
+			<hr id="spacer" style="color: #efefef; padding-bottom: 0;"></hr>
+		</div>
+		
+		<div class="midContainer" style="">
+			<p class="writing" style="font-weight: 600">Here is the most concerning tweet from @{{username}}:</p>
+			<p class="writing" style="font-style: oblique; padding-top: 1px; padding-bottom: 58px;">" {{worst_tweet}} "</p>
+		</div>
+
+		<div class="midContainer">
+			<div class="row">
+				<!-- <div class="percentagebar"> -->
+					<div class="col"></div>
+					<div class="col">
+						<div class="c100 p{{ score }} big orange" style="margin-left: 12%;">
+	  					<span>{{ score }}%</span>
+	  					<div class="slice">
+	    					<div class="bar"></div>
+	    					<div class="fill"></div>
+	  					</div>
+					</div>
+					</div>
+					<div class="col"></div>
+				<!-- </div> -->
+			</div>
+			<p class="writing" style="padding-top: 40px;">This user got a score of {{ score }}% for percent positivity. {{message}} </p>
+			<p class="writing2"> Contact the suicide prevention helpline below if find a reason to be concerned. </p>
+			<div class="row">
+				<!-- <div class="percentagebar"> -->
+					<div class="col"></div>
+					<div class="col">
+						<button class="supportButton" style="font-weight: 600; margin-left: 61px;" onclick="sendDM()">Send an anonymous message to show you care.</button>
+			<button class="supportButton" style="font-weight: 600; margin-left: 62px;" onclick="window.location='https://suicidepreventionlifeline.org/';">1-800-273-8255</button>
+					</div>
+					<div class="col"></div>
+				<!-- </div> -->
+			</div>
+		</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+		function sendDM() {
+			var request = new XMLHttpRequest();
+			var data = {
+				'username': "{{ username }}",
+			};
+
+			request.open('POST', '/watch/send-dm?username={{username}}', true);
+			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+			request.send(data);
+
+			alert("A message was sent to @{{username}}! Thanks for listening.")
+		}
+	</script>
+</body>
+</html>

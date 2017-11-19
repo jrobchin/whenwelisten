@@ -1,0 +1,116 @@
+
+.topContainer {
+	background-color: #e06767;
+}
+
+.topContainer div nav h1 {
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 100px;
+	text-align: left;
+	margin-top: 65px;
+	margin-left: 110px; 
+	float: left;
+	color: white;
+}
+
+.topContainer div nav button {
+	float: right;
+	margin-right: 110px;
+	margin-top: 125px;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	color: #e06767;
+	background: white;
+	border-color: white;
+	outline: transparent;
+	border-radius: 16px;
+	width: 120px;
+}
+
+.searchbar p {
+	margin-left: 200px;
+	padding-top: 300px;
+	font-size: 25px;
+	color: white;
+}
+
+.searchbar form input {
+	background: transparent;
+	border-color: transparent;
+	font-size: 60px;
+	margin-left: 200px;
+	color: white;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	outline: none;
+}
+
+.topContainer div #spacer {
+	padding-bottom: 125px;
+	border-top: 1px solid;
+	opacity: 0.25;
+	margin-right: 200px;
+	margin-left: 200px;
+	margin-top: -23px;
+}
+
+.topContainer .midContainer {
+	background-color: #e06767;
+}
+
+.topContainer .midContainer .percentagebar {
+	padding-left: 582px;
+}
+
+.topContainer .midContainer .writing {
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 25px;
+	color: white;
+	text-align: center;
+	padding-top: 85px;
+}
+
+.topContainer .midContainer .writing2 {
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 25px;
+	color: white;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+
+
+/*.topContainer .midContainer .pics {
+	position: relative;
+}
+
+.topContainer .midContainer #outter {
+	margin-left: 488px;
+}
+
+.topContainer .midContainer #inner {
+  position: absolute;
+  left: 44%;
+  top: 37%;
+}*/
+
+.topContainer .midContainer #supportButton {
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	margin-left: 590px;
+	color: #e06767;
+	background: white;
+	border-color: white;
+	outline: transparent;
+	border-radius: 16px;
+	margin-bottom: 50px;
+	width: 200px;
+}
+
+input::-webkit-input-placeholder {
+	color: white;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	opacity: 0.6;
+}
+
+html, body {
+	max-width: 100%;
+	overflow-x: hidden;
+}

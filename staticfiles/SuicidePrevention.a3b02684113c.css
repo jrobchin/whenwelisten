@@ -1,0 +1,154 @@
+.topContainer {
+	background-color: #e06767;
+}
+
+.topContainer div nav h1 {
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 100px;
+	text-align: left;
+	margin-top: 65px;
+	margin-left: 110px; 
+	float: left;
+	color: white;
+}
+
+.topContainer div nav button {
+	float: right;
+	margin-right: 110px;
+	margin-top: 125px;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	color: white;
+	background: #e06767;
+	border-color: white;
+	outline: transparent;
+	border-radius: 16px;
+	width: 120px;
+}
+
+.searchbar p {
+	margin-left: 200px;
+	padding-top: 300px;
+	font-size: 25px;
+	color: white;
+}
+
+.searchbar form input {
+	background: transparent;
+	border-color: transparent;
+	font-size: 60px;
+	margin-left: 200px;
+	color: white;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	outline: none;
+}
+
+.topContainer div #spacer {
+	padding-bottom: 225px;
+	border-top: 1px solid;
+	opacity: 0.25;
+	margin-right: 200px;
+	margin-left: 200px;
+	margin-top: -23px;
+}
+
+.midContainer {
+	background-color: #efefef;
+	display: block;
+	overflow: hidden;
+}
+
+.midContainer .image img{
+	float: left;
+	position: relative;
+	margin-left: 110px;
+	padding-left: 20px;
+	padding-top: 200px;
+}
+
+.midContainer .secondHeading {
+	margin-top: 200px;
+	margin-left: 400px;
+	margin-right: 150px;
+	margin-bottom: 200px;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.lowContainer #titleBottom {
+	margin-left: 165px;
+	margin-top: 100px;
+	margin-bottom: 50px;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 60px;
+}
+
+.lowContainer #x1 #firstStep {
+	float: right;
+	padding-right: 770px;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.lowContainer #x1 #num1 {
+	margin-left: 173px;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 20px;
+}
+
+.lowContainer #x1 {
+	padding-bottom: 50px;
+}
+
+.lowContainer #x2 #secondStep {
+	float: right;
+	padding-right: 615px;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.lowContainer #x2 #num2 {
+	margin-left: 173px;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 20px;
+}
+
+.lowContainer #x2 {
+	padding-bottom: 50px;
+}
+
+.lowContainer #x3 #thirdStep {
+	float: right;
+	padding-right: 716px;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.lowContainer #x3 #num3 {
+	margin-left: 173px;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 20px;
+}
+
+.lowContainer #x3 {
+	padding-bottom: 200px;
+}
+
+.lowContainer #x4 p {
+	color: #A9A9A9;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 500;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+input::-webkit-input-placeholder {
+	color: white;
+	font-family: font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	opacity: 0.6;
+}
+
+html, body {
+	max-width: 100%;
+	overflow-x: hidden;
+}
