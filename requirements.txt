@@ -26,7 +26,7 @@ six==1.11.0
 statsmodels==0.8.0
 tweepy==3.5.0
 urllib3==1.22
-Werkzeug==0.12.2
+Werkzeug==0.15.3
 whitenoise==3.3.1
 gunicorn
 IndicoIo==1.1.1
