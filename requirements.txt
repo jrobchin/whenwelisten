@@ -16,7 +16,7 @@ oauthlib==2.0.6
 olefile==0.44
 patsy==0.4.1
 pbr==3.1.1
-Pillow==4.3.0
+Pillow==8.1.1
 pyparsing==2.2.0
 python-dateutil==2.6.1
 pytz==2017.2
